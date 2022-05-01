@@ -18,15 +18,16 @@ int	ft_exit(t_game *data)
 
 int	move_event(int key, t_game *data)
 {
-	if (key == 53) // ESC 
+	//data->move = 0;
+	if (key == XK_Escape) // ESC 
 		ft_exit(data);
-	else if (key == 12) // A
+	else if (key == XK_w) // A
 		ft_move_up(data);
-	else if (key == 1) // S 
+	else if (key == XK_a) // S 
 		ft_move_left(data);
-	else if (key == 2)
+	else if (key == XK_d)
 		ft_move_right(data); // D
-	else if (key == 6)
+	else if (key == XK_s)
 		ft_move_down(data); // W
 	return (0);
 }

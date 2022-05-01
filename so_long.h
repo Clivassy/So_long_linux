@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <X11/keysym.h>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
