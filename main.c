@@ -1,44 +1,5 @@
 #include "so_long.h"
 
-/*
-ETAPE 1) Parsing
-- check du nombre d'arguments
-- Allouer la mémoire pour la structure
-- vérifier que les map : sont bien des fichier .ber et qu'il s'agit bien d'une extension.
-- Gérer les erreurs lors de l'ouverture de la mlx
-- Ouverture du fichier : on va lire et récupérer la map (gnl, open, close)
-*  - All lines have same length
-**  - Theres exactly one player symbol
-**  - The map is surrounded by walls
-**  - There is atleast one exit
-**	- There is atleast one collectable
-**	- Checks if there is any invalid symbol
-- vérifier que tous les xpm (a l'origine des png) sont ok : on vérifie qu'ils existent (il va falloir les importer, les redimensionner et les formater)
-attention : prendre des images en 2D.
-
-ETAPE 2)
-- Initialisation de la structure : a zero ou NULL
-
-
-ETAPE 3)
-- Analyse de la map : si c'est collecteur tu mets telles image, si c'est player tu mets telle image.
-
-ETAPE 4)
-- fonction qui va gérer les evenements, les interactions avec le clavier.
-- touche A = pour la droite ect
-- faire une fonction pour autoriser le personnage a avancer ou pas selon ou il est ds la map.
-
-- mlx loop
-- mlx hook : insérer une fonction pour fermer la fenetre avec la croix.
-*/
-
-/* fonction exit
-- window = mlx_destroy_window
-- mlx = mlx_destroy_display + free()
-- sprites (xpm) = mlx_destroy_image
-free
-*/
-
 /* Check if all lines have the same len */
 int ft_check_lines_len(t_game *data)
 {
@@ -212,21 +173,16 @@ void ft_init_struc(t_game *data, char *file)
 	data->length = ft_strlen(data->map[0]);
 }
 
-int	reduce_w(t_game *data)
-{
-	ft_draw_map(data);
-	return (1);
-}
-
 int main(int argc, char **argv)
 {
 	// attention : penser que carte vide : segfault
 	// ++ env -i 
-	t_game *data; 
 
+	t_game *data;
 	data = NULL;
 	ft_check_input(argc, argv);
-	data = malloc(sizeof(t_game));
+	data = (t_game *)malloc(sizeof(t_game));
+	//data = malloc(sizeof(t_game));
 	ft_init_struc(data, argv[1]);
 	ft_map_checker(data); 
 	data->mlx_ptr = mlx_init();
@@ -234,11 +190,8 @@ int main(int argc, char **argv)
 	ft_draw_map(data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, move_event, data);
 	mlx_hook(data->mlx_win, 17, 1L << 17, ft_exit, data);
-//	mlx_hook(data->mlx_win, 15, 1L << 16, reduce_w, data);
-	mlx_string_put(data->mlx_ptr, data->mlx_win, 5, 10, 0xffffff, "Number of moves: 0");
+	mlx_string_put(data->mlx_ptr, data->mlx_win, 5, 10, 0xffffff, "Number of moves: ");
 	mlx_loop(data->mlx_ptr);
 	free(data);
 	return (0);
 }
-// COMPILATION
-// gcc -I ./ -g -L ./ -l mlx -framework OpenGL -framework AppKit fdf.c

@@ -15,9 +15,9 @@ void    ft_img_init(t_game *data)
 {
     data->img_wall = ft_convert_to_img("./images/wall_violet.xpm", data);
 	data->img_floor = ft_convert_to_img("./images/background_violet.xpm", data);
-  	data->img_player = ft_convert_to_img("./images/rogue.xpm", data);
-	data->img_exit = ft_convert_to_img("./images/door1.xpm", data);
-   	data->img_collect = ft_convert_to_img("./images/collector.xpm", data);
+  	data->img_player = ft_convert_to_img("./images/perso.xpm", data);
+	data->img_exit = ft_convert_to_img("./images/door3.xpm", data);
+   	data->img_collect = ft_convert_to_img("./images/chandelier.xpm", data);
 }
 
 /* Print image to window*/
@@ -32,7 +32,7 @@ int	ft_get_char(int i, int j, char letter, t_game *data)
 {
 	if (letter == '1')
 		img_draw(data, data->img_wall, j, i);
-	if (letter == '0' || letter == 'P' || letter == 'E' || letter == 'C') // want th P ON the floor
+	if (letter == '0')
 		img_draw(data, data->img_floor, j, i);
 	if (letter== 'P')
 		img_draw(data, data->img_player, j, i);

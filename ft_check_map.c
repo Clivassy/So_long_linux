@@ -21,7 +21,7 @@ char **malloc_columns(char *file, t_game *data)
 	line_count = ft_count_lines(file);
 	if (line_count <= 0)
 		ft_map_error("error: opening or reading failed: the file may not exist.", data);
-	map = malloc(sizeof(char *) * line_count + 1);
+	map = malloc(sizeof(char*) * line_count + 1);
 	if (map == NULL)
 		ft_map_error("error: malloc failed", data);
     return (map);
@@ -68,7 +68,7 @@ void ft_print_map(t_game *data)
 /* Check all conditions for a valid map*/
 void	ft_map_checker(t_game *data)
 {
-	ft_print_map(data);
+	//ft_print_map(data);
 	ft_check_lines_len(data);
 	ft_check_walls(data);
 	ft_check_inside_map(data);
