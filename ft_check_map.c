@@ -8,7 +8,10 @@ int ft_count_lines(char *file)
 
 	fd = open(file, O_RDONLY);
 	while ((str = get_next_line(fd)) != 0)
+	{
 		count_line++;
+		free(str);
+	}
 	return (count_line);
 }
 
@@ -51,7 +54,7 @@ char	**ft_create_map(char *file)
 {
 	char	*line;
 	char	*all_lines;
-	char 	**final_map;
+	char	*final;
 	int		i;
 	int		fd;
 
@@ -74,8 +77,8 @@ char	**ft_create_map(char *file)
 	close(fd);
 	if (all_lines[0] == '\0')
 		ft_input_error("error");
-	final_map = ft_split(all_lines, '\n');
-	return (final_map);
+	
+	return(ft_split(all_lines, '\n'));
 }
 
 /* print map to terminal */
