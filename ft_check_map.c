@@ -54,7 +54,7 @@ char	**ft_create_map(char *file)
 {
 	char	*line;
 	char	*all_lines;
-	char	*final;
+	char	**final;
 	int		i;
 	int		fd;
 
@@ -77,8 +77,9 @@ char	**ft_create_map(char *file)
 	close(fd);
 	if (all_lines[0] == '\0')
 		ft_input_error("error");
-	
-	return(ft_split(all_lines, '\n'));
+	final = ft_split(all_lines, '\n');
+	free(all_lines);
+	return(final);
 }
 
 /* print map to terminal */
