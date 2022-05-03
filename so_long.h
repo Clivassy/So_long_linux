@@ -49,7 +49,7 @@ void    ft_check_one_line(char *line, t_game *data);
 void    t_check_columns(t_game *data);
 void    ft_check_c_and_e(int index, int j, t_game *data);
 int     ft_is_one_player(t_game *data);
-char **ft_create_map(t_game *data, char *file);
+char **ft_create_map( char *file);
 int     ft_check_lines_len(t_game *data);
 
 /* Draw map */
@@ -87,6 +87,8 @@ char		*ft_read_buff(int fd, char *save);
 int      ft_strlen(char *s);
 
 /* LIBFT */
+char	**ft_split(char *s, char c);
+char	*ft_strdup(char *s);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_strrchr(char *s, int c);
 int	ft_strcmp(char *s1, char *s2);

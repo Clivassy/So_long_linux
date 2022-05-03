@@ -12,7 +12,8 @@ int ft_count_lines(char *file)
 	return (count_line);
 }
 
-/* Allocates memory for a string array with the same lines as the file */
+/* 
+//Allocates memory for a string array with the same lines as the file
 char **malloc_columns(char *file, t_game *data)
 {
 	int line_count;
@@ -27,7 +28,7 @@ char **malloc_columns(char *file, t_game *data)
     return (map);
 }
 
-/* Creates -with malloc- a 2D char map as found in file */
+//Creates -with malloc- a 2D char map as found in file
 char **ft_create_map(t_game *data, char *file)
 {
 	int fd;
@@ -44,6 +45,37 @@ char **ft_create_map(t_game *data, char *file)
 	map[i] = NULL;
     close(fd);
     return (map);
+} */
+
+char	**ft_create_map(char *file)
+{
+	char	*line;
+	char	*all_lines;
+	char 	**final_map;
+	int		i;
+	int		fd;
+
+	i = 0;
+	line = "";
+	all_lines = ft_strdup("");
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		perror("error fd");
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (line == NULL || line[0] == '\n')
+			break ;
+		all_lines = ft_strjoin(all_lines, line);
+		free(line);
+		i++;
+	}
+	free(line);
+	close(fd);
+	if (all_lines[0] == '\0')
+		ft_input_error("error");
+	final_map = ft_split(all_lines, '\n');
+	return (final_map);
 }
 
 /* print map to terminal */
@@ -68,7 +100,7 @@ void ft_print_map(t_game *data)
 /* Check all conditions for a valid map*/
 void	ft_map_checker(t_game *data)
 {
-	//ft_print_map(data);
+	ft_print_map(data);
 	ft_check_lines_len(data);
 	ft_check_walls(data);
 	ft_check_inside_map(data);

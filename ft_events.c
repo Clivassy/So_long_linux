@@ -69,7 +69,7 @@ char	*ft_itoa(int n)
 
 int	move_event(int key, t_game *data)
 {
-	mlx_string_put(data->mlx_ptr, data->mlx_win, 20, 30, 0xffffff, ft_itoa(data->move));
+//	mlx_string_put(data->mlx_ptr, data->mlx_win, 20, 30, 0xffffff, ft_itoa(data->move));
 	if (key == XK_Escape) // ESC 
 		ft_exit(data);
 	else if (key == XK_w) // A
