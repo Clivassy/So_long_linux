@@ -5,7 +5,7 @@ SRCS = ft_moves.c ft_events.c main.c get_next_line/get_next_line.c get_next_line
 OBJS = ${SRCS:.c=.o}
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 RM = rm -rf
 
