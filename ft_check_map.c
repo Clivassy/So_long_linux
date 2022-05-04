@@ -76,8 +76,6 @@ void ft_check_walls(t_game *data)
 	last_line = data->width -1 ;
 	first_line = 0;
 	i = 0;
-	if ((int)data->length == (int)data->width)
-		ft_map_error("Error\nMap is square", data);
 	ft_check_one_line(data->map[first_line], data);
 	ft_check_one_line(data->map[last_line], data);
 	ft_check_columns(data);
