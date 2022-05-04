@@ -1,5 +1,6 @@
 #include "so_long.h"
 
+/* Quit properly, free all images && map */
 int	ft_exit(t_game *data)
 {
 	mlx_clear_window(data->mlx_ptr, data->mlx_win);
@@ -11,74 +12,23 @@ int	ft_exit(t_game *data)
     mlx_destroy_image(data->mlx_ptr, data->img_wall);
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	mlx_destroy_display(data->mlx_ptr); 
-	ft_free(data->map); // free la map 
-	free(data->mlx_ptr); // 
+	ft_free(data->map);
+	free(data->mlx_ptr);
 	exit(EXIT_SUCCESS);
 }
-static int	ft_len(long nb)
-{
-	int		len;
 
-	len = 0;
-	if (nb <= 0)
-		len = 1;
-	while (nb != 0)
-	{
-		len++;
-		nb = nb / 10;
-	}
-	return (len);
-}
-
-static char	*ft_pos_or_neg(char *s, long nb, int n)
-{
-	if (nb < 0)
-	{
-		s[0] = '-';
-		nb = nb * (-1);
-	}
-	while (nb > 0)
-	{
-		s[n] = 48 + (nb % 10);
-		nb = nb / 10;
-		n--;
-	}
-	return (s);
-}
-
-char	*ft_itoa(int n)
-{
-	int		len;
-	long	nb;
-	char	*s_itoa;
-
-	nb = n;
-	len = ft_len(nb);
-	s_itoa = (char *)malloc(sizeof(char) * (len + 1));
-	if (!s_itoa)
-		return (NULL);
-	s_itoa[len--] = '\0';
-	if (nb == 0)
-	{
-		s_itoa[0] = 48;
-		return (s_itoa);
-	}
-	s_itoa = ft_pos_or_neg(s_itoa, nb, len);
-	return (s_itoa);
-}
-
+/* Configure move from keypress*/
 int	move_event(int key, t_game *data)
 {
-//	mlx_string_put(data->mlx_ptr, data->mlx_win, 20, 30, 0xffffff, ft_itoa(data->move));
-	if (key == XK_Escape) // ESC 
+	if (key == XK_Escape)
 		ft_exit(data);
-	else if (key == XK_w) // A
+	else if (key == XK_w)
 		ft_move_up(data);
-	else if (key == XK_a) // S 
+	else if (key == XK_a)
 		ft_move_left(data);
 	else if (key == XK_d)
-		ft_move_right(data); // D
+		ft_move_right(data);
 	else if (key == XK_s)
-		ft_move_down(data); // W
+		ft_move_down(data);
 	return (0);
 }

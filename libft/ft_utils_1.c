@@ -10,6 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../so_long.h"
+
+void	ft_putnbr(int nb)
+{
+	if (nb >= 0 && nb <= 9)
+	{
+		nb = nb + 48;
+		write(1, &nb, 1);
+	}
+	else if (nb < 0)
+	{
+		if (nb == -2147483648)
+			write(1, "-2147483648", 11);
+		else
+		{
+			write(1, "-", 1);
+			nb = nb * (-1);
+			ft_putnbr(nb);
+			return ;
+		}
+	}
+	else
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+}
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

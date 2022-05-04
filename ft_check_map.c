@@ -1,110 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 14:25:28 by jbatoro           #+#    #+#             */
+/*   Updated: 2022/05/04 14:27:45 by jbatoro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-/* Count lines */
-int ft_count_lines(char *file)
+
+/* Check if there is only one player */
+int	ft_is_one_player(t_game *data)
 {
-	char *str;
-	int count_line = 0;
-	int fd;
+	int	i;
+	int	j;
 
-	fd = open(file, O_RDONLY);
-	while ((str = get_next_line(fd)) != 0)
-	{
-		count_line++;
-		free(str);
-	}
-	return (count_line);
-}
-
-/* 
-//Allocates memory for a string array with the same lines as the file
-char **malloc_columns(char *file, t_game *data)
-{
-	int line_count;
-    char **map;
-
-	line_count = ft_count_lines(file);
-	if (line_count <= 0)
-		ft_map_error("error: opening or reading failed: the file may not exist.", data);
-	map = malloc(sizeof(char*) * line_count + 1);
-	if (map == NULL)
-		ft_map_error("error: malloc failed", data);
-    return (map);
-}
-
-//Creates -with malloc- a 2D char map as found in file
-char **ft_create_map(t_game *data, char *file)
-{
-	int fd;
-	int i;
-    char **map;
-
-	map = malloc_columns(file, data);
-	if (map == NULL)
-		return (NULL);
-	fd = open(file, O_RDONLY);
-	i = 0;
-	while ((map[i] = get_next_line(fd)) != 0)
-		i++;
-	map[i] = NULL;
-    close(fd);
-    return (map);
-} */
-
-char	**ft_create_map(char *file)
-{
-	char	*line;
-	char	*all_lines;
-	char	**final;
-	int		i;
-	int		fd;
-
-	i = 0;
-	line = "";
-	all_lines = ft_strdup("");
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		perror("error fd");
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (line == NULL || line[0] == '\n')
-			break ;
-		all_lines = ft_strjoin(all_lines, line);
-		free(line);
-		i++;
-	}
-	free(line);
-	close(fd);
-	if (all_lines[0] == '\0')
-		ft_input_error("error");
-	final = ft_split(all_lines, '\n');
-	free(all_lines);
-	return(final);
-}
-
-/* print map to terminal */
-void ft_print_map(t_game *data)
-{
-	int j;
-	int i;
+	data->player = 0;
 	i = 0;
 	while (i < data->width)
 	{
 		j = 0;
-		while (j < ft_strlen(data->map[0]))
-		{
-			printf("%c", data->map[i][j]);
+		while (j < data->length)
+		{	
+			if (data->map[i][j] == 'P')
+				data->player++;
 			j++;
 		}
 		i++;
 	}
-	printf("\n");
+	if (data->player != 1)
+		ft_map_error("Error:\nMore or less than one player", data);
+	return (0);
+}
+
+/* Check if start && end colums are filled with 1 
+   && if there is at least one C && one E*/
+void	ft_check_columns(t_game *data)
+{
+	int	last_nb;
+	int	first_nb;
+	int	j;
+	int	i;
+
+	i = 0;
+	first_nb = 0;
+	last_nb = data->length - 1;
+	while (i < data->width)
+	{
+		if (data->map[first_nb][0] != '1'
+			|| data->map[first_nb][last_nb] != '1')
+			ft_map_error("Error:\nMap isn't surrounded by walls", data);
+		j = 0;
+		while (j < data->length)
+		{
+			ft_check_c_and_e(i, j, data);
+			j++;
+		}
+		i++;
+		first_nb++;
+	}
+	if (data->collector < 1 || data->exit < 1)
+		ft_map_error("Error:\nNo collector or exit in map", data);
+}
+
+/* Check if map is surrounded by wall */
+void ft_check_walls(t_game *data)
+{
+	int i;
+	int last_line;
+	int first_line;
+
+	last_line = data->width -1 ;
+	first_line = 0;
+	i = 0;
+	if ((int)data->length == (int)data->width)
+		ft_map_error("Error\nMap is square", data);
+	ft_check_one_line(data->map[first_line], data);
+	ft_check_one_line(data->map[last_line], data);
+	ft_check_columns(data);
+}
+
+/* Check if there is only valid characters in the map */
+void ft_check_inside_map(t_game *data)
+{
+	int j;
+	int len;
+	int i;
+
+	i = 0;
+	len = data->length -1;
+
+	while (i < data->width)
+	{
+		j = 0;
+		while (j < len)
+		{
+			if (data->map[i][j] == '0' || data->map[i][j] == '1' || data->map[i][j] == 'E' 
+					|| data->map[i][j] == 'C' || data->map[i][j] == 'P')
+				j++;
+			else
+				ft_map_error("error: map contains invalid characters", data);
+		}
+		i++;
+	}
+	ft_is_one_player(data);
 }
 
 /* Check all conditions for a valid map*/
 void	ft_map_checker(t_game *data)
 {
-	ft_print_map(data);
 	ft_check_lines_len(data);
 	ft_check_walls(data);
 	ft_check_inside_map(data);
