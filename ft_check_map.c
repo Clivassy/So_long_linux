@@ -6,7 +6,7 @@
 /*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:25:28 by jbatoro           #+#    #+#             */
-/*   Updated: 2022/05/04 14:27:45 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/05/04 17:46:23 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void	ft_check_columns(t_game *data)
 }
 
 /* Check if map is surrounded by wall */
-void ft_check_walls(t_game *data)
+void	ft_check_walls(t_game *data)
 {
-	int i;
-	int last_line;
-	int first_line;
+	int	i;
+	int	last_line;
+	int	first_line;
 
 	last_line = data->width -1 ;
 	first_line = 0;
@@ -82,21 +82,21 @@ void ft_check_walls(t_game *data)
 }
 
 /* Check if there is only valid characters in the map */
-void ft_check_inside_map(t_game *data)
+void	ft_check_inside_map(t_game *data)
 {
-	int j;
-	int len;
-	int i;
+	int	j;
+	int	len;
+	int	i;
 
 	i = 0;
 	len = data->length -1;
-
 	while (i < data->width)
 	{
 		j = 0;
 		while (j < len)
 		{
-			if (data->map[i][j] == '0' || data->map[i][j] == '1' || data->map[i][j] == 'E' 
+			if (data->map[i][j] == '0' || data->map[i][j] == '1'
+					|| data->map[i][j] == 'E'
 					|| data->map[i][j] == 'C' || data->map[i][j] == 'P')
 				j++;
 			else
