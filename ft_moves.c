@@ -51,7 +51,7 @@ void	ft_move_up(t_game *data)
 		data->map[data->p_y][data->p_x] = 'P';
 		img_draw(data, data->img_player, data->p_x, data->p_y);
 		data->map[data->p_y + 1][data->p_x] = '0';
-		img_draw(data, data->img_floor, data->p_x, (data->p_y +1));
+		img_draw(data, data->img_floor, data->p_x, (data->p_y + 1));
 		data->move++;
 		ft_putnbr(data->move);
 		ft_putstr_fd("\n", 1);
@@ -122,7 +122,7 @@ void	ft_move_left(t_game *data)
 			data->collector--;
 		data->map[data->p_y][data->p_x] = 'P';
 		img_draw(data, data->img_player, data->p_x, data->p_y);
-		data->map[data->p_y][data->p_x +1] = '0';
+		data->map[data->p_y][data->p_x + 1] = '0';
 		img_draw(data, data->img_floor, (data->p_x + 1), data->p_y);
 		data->move++;
 		ft_putnbr(data->move);
