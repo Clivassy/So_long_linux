@@ -33,6 +33,15 @@ void	ft_input_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+/* Return fd error, free and quit properly */
+void	ft_fd_error(char *msg, char *map, t_game *data)
+{
+	ft_putendl_fd(msg, 2);
+	free(map);
+	free(data);
+	exit(EXIT_FAILURE);
+}
+
 /* Return maps error, free memory and quit properly*/
 void	ft_map_error(char *msg, t_game *data)
 {

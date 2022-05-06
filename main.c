@@ -26,7 +26,7 @@ void	ft_check_input(int argc, char **argv)
 /* Initialize game structure */
 void	ft_init_struc(t_game *data, char *file)
 {
-	data->move = 1;
+	data->move = 0;
 	data->img_exit = 0;
 	data->img_collect = 0;
 	data->img_floor = 0;
@@ -35,6 +35,7 @@ void	ft_init_struc(t_game *data, char *file)
 	data->collector = 0;
 	data->exit = 0;
 	data->player = 0;
+	data->width = 0;
 	data->map = ft_read_map(data, file);
 	data->length = ft_strlen(data->map[0]);
 }
@@ -55,6 +56,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data->mlx_win, 2, 1L << 0, move_event, data);
 	mlx_hook(data->mlx_win, 17, 1L << 17, ft_exit, data);
 	mlx_loop(data->mlx_ptr);
-	free(data);
 	return (0);
 }

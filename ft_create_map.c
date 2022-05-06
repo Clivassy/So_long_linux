@@ -27,26 +27,25 @@ char	**ft_creat_map(char *map)
 /* Read map */
 char	**ft_read_map(t_game *data, char *file)
 {
-	char	*line;
-	char	*all_lines;
+	char	*str;
+	char	*map;
 	int		fd;
 
-	data->width = 0;
-	line = "";
-	all_lines = ft_strdup("");
+	str = "";
+	map = ft_strdup("");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		perror("error fd");
-	while (line)
+		ft_fd_error("Error:\nCan't create fd\n", map, data);
+	while (str)
 	{
-		line = get_next_line(fd);
-		if (line == NULL || line[0] == '\n')
+		str = get_next_line(fd);
+		if (str == NULL || str[0] == '\n')
 			break ;
-		all_lines = ft_strjoin(all_lines, line);
-		free(line);
+		map = ft_strjoin(map, str);
+		free(str);
 		data->width++;
 	}
-	free(line);
+	free(str);
 	close(fd);
-	return (ft_creat_map(all_lines));
+	return (ft_creat_map(map));
 }

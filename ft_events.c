@@ -26,6 +26,7 @@ int	ft_exit(t_game *data)
 	mlx_destroy_display(data->mlx_ptr);
 	ft_free(data->map);
 	free(data->mlx_ptr);
+	free(data);
 	exit(EXIT_SUCCESS);
 }
 

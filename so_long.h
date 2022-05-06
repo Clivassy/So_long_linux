@@ -78,6 +78,7 @@ int		ft_exit(t_game *data);
 
 /* Errors */
 void	ft_input_error(char *msg);
+void	ft_fd_error(char *msg, char *map, t_game *data);
 void	ft_map_error(char *msg, t_game *data);
 char	**ft_free(char **tab);
 

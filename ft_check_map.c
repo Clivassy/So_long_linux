@@ -100,7 +100,7 @@ void	ft_check_inside_map(t_game *data)
 					|| data->map[i][j] == 'C' || data->map[i][j] == 'P')
 				j++;
 			else
-				ft_map_error("error: map contains invalid characters", data);
+				ft_map_error("Error:\n map contains invalid characters", data);
 		}
 		i++;
 	}
