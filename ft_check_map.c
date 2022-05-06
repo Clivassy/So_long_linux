@@ -18,7 +18,6 @@ int	ft_is_one_player(t_game *data)
 	int	i;
 	int	j;
 
-	data->player = 0;
 	i = 0;
 	while (i < data->width)
 	{
@@ -69,13 +68,11 @@ void	ft_check_columns(t_game *data)
 /* Check if map is surrounded by wall */
 void	ft_check_walls(t_game *data)
 {
-	int	i;
 	int	last_line;
 	int	first_line;
 
 	last_line = data->width -1 ;
 	first_line = 0;
-	i = 0;
 	ft_check_one_line(data->map[first_line], data);
 	ft_check_one_line(data->map[last_line], data);
 	ft_check_columns(data);
@@ -85,15 +82,13 @@ void	ft_check_walls(t_game *data)
 void	ft_check_inside_map(t_game *data)
 {
 	int	j;
-	int	len;
 	int	i;
 
 	i = 0;
-	len = data->length -1;
 	while (i < data->width)
 	{
 		j = 0;
-		while (j < len)
+		while (j < data->length -1)
 		{
 			if (data->map[i][j] == '0' || data->map[i][j] == '1'
 					|| data->map[i][j] == 'E'
