@@ -1,31 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_create_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 09:37:17 by jbatoro           #+#    #+#             */
+/*   Updated: 2022/05/05 10:27:48 by jbatoro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-/* Count lines */
-int ft_count_lines(char *file)
+/* Create the map */
+char	**ft_creat_map(char *map)
 {
-	char *str;
-	int count_line = 0;
-	int fd;
+	char	**final_map;
 
-	fd = open(file, O_RDONLY);
-	while ((str = get_next_line(fd)) != 0)
-	{
-		count_line++;
-		free(str);
-	}
-	return (count_line);
+	if (map[0] == '\0')
+		ft_input_error("error");
+	final_map = ft_split(map, '\n');
+	free (map);
+	return (final_map);
 }
 
 /* Read map */
-char	**ft_create_map(char *file)
+char	**ft_read_map(t_game *data, char *file)
 {
 	char	*line;
 	char	*all_lines;
-	char	**final;
-	int		i;
 	int		fd;
 
-	i = 0;
+	data->width = 0;
 	line = "";
 	all_lines = ft_strdup("");
 	fd = open(file, O_RDONLY);
@@ -38,13 +44,9 @@ char	**ft_create_map(char *file)
 			break ;
 		all_lines = ft_strjoin(all_lines, line);
 		free(line);
-		i++;
+		data->width++;
 	}
 	free(line);
 	close(fd);
-	if (all_lines[0] == '\0')
-		ft_input_error("error");
-	final = ft_split(all_lines, '\n');
-	free(all_lines);
-	return(final);
+	return (ft_creat_map(all_lines));
 }

@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 10:30:30 by jbatoro           #+#    #+#             */
+/*   Updated: 2022/05/05 10:33:05 by jbatoro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+
 char	**ft_free(char **tab)
 {
 	unsigned int	i;
@@ -14,17 +27,17 @@ char	**ft_free(char **tab)
 }
 
 /* Return input error and quit properly */
-void    ft_input_error(char *msg)
+void	ft_input_error(char *msg)
 {
 	ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
 
 /* Return maps error, free memory and quit properly*/
-void    ft_map_error(char *msg, t_game *data)
+void	ft_map_error(char *msg, t_game *data)
 {
-    ft_putendl_fd(msg, 2);
-    ft_free(data->map);
-    free(data); 
-    exit(EXIT_FAILURE);
+	ft_putendl_fd(msg, 2);
+	ft_free(data->map);
+	free(data);
+	exit(EXIT_FAILURE);
 }

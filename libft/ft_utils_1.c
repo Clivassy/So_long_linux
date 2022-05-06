@@ -62,7 +62,6 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
-
 void	ft_putstr_fd(char *s, int fd)
 {
 	int		i;

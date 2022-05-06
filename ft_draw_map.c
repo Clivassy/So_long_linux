@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 10:28:44 by jbatoro           #+#    #+#             */
+/*   Updated: 2022/05/05 10:29:50 by jbatoro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 /* Convertion of xpm file to img */
-void    *ft_convert_to_img(char *img, t_game *data)
+void	*ft_convert_to_img(char *img, t_game *data)
 {
-    void *img_ptr;
+	void	*img_ptr;
 
-     img_ptr = mlx_xpm_file_to_image
+	img_ptr = mlx_xpm_file_to_image
 		(data->mlx_ptr, img, &data->width, &data->length);
-    return (img_ptr);
+	return (img_ptr);
 }
 
 /* Initialize struct with accurate images*/
-void    ft_img_init(t_game *data)
+void	ft_img_init(t_game *data)
 {
-    data->img_wall = ft_convert_to_img("./images/wall_violet.xpm", data);
+	data->img_wall = ft_convert_to_img("./images/wall_violet.xpm", data);
 	data->img_floor = ft_convert_to_img("./images/background_violet.xpm", data);
-  	data->img_player = ft_convert_to_img("./images/perso.xpm", data);
+	data->img_player = ft_convert_to_img("./images/perso.xpm", data);
 	data->img_exit = ft_convert_to_img("./images/door3.xpm", data);
-   	data->img_collect = ft_convert_to_img("./images/chandelier.xpm", data);
+	data->img_collect = ft_convert_to_img("./images/chandelier.xpm", data);
 }
 
 /* Print image to window*/
@@ -34,7 +46,7 @@ int	ft_get_char(int i, int j, char letter, t_game *data)
 		img_draw(data, data->img_wall, j, i);
 	if (letter == '0')
 		img_draw(data, data->img_floor, j, i);
-	if (letter== 'P')
+	if (letter == 'P')
 		img_draw(data, data->img_player, j, i);
 	if (letter == 'E')
 		img_draw(data, data->img_exit, j, i);
@@ -48,9 +60,9 @@ int	ft_draw_map(t_game *data)
 {
 	int		i;
 	int		j;
-	
+
 	ft_img_init(data);
-    i = 0;
+	i = 0;
 	while (data->map[i])
 	{
 		j = 0;

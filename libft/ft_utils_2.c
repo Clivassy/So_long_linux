@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils_2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbatoro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 16:02:52 by jbatoro           #+#    #+#             */
+/*   Updated: 2022/05/05 16:02:53 by jbatoro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 char	*ft_strdup(char *s)
 {
-	int	src_size;
+	int		src_size;
 	char	*dest;
 	char	*source;
 	int		i;
@@ -25,7 +37,7 @@ char	*ft_strdup(char *s)
 static int	ft_count_words(char const *s, char c)
 {
 	int		i;
-	int			count;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -42,6 +54,7 @@ static int	ft_count_words(char const *s, char c)
 	}
 	return (count);
 }
+
 static char	*ft_malloc_word(const char *str, int start, int end)
 {
 	char	*malloc_w;
@@ -67,7 +80,7 @@ static char	**ft_malloc_array(char *s, char **array, char c)
 {
 	int	i;
 	int	j;
-	int		index;
+	int	index;
 
 	i = 0;
 	j = 0;

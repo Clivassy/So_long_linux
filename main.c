@@ -35,8 +35,7 @@ void	ft_init_struc(t_game *data, char *file)
 	data->collector = 0;
 	data->exit = 0;
 	data->player = 0;
-	data->width = ft_count_lines(file);
-	data->map = ft_create_map(file);
+	data->map = ft_read_map(data, file);
 	data->length = ft_strlen(data->map[0]);
 }
 
