@@ -36,7 +36,6 @@ void	ft_get_player_pos(t_game *data)
 
 void	ft_move_up(t_game *data)
 {
-	ft_get_player_pos(data);
 	data->p_y--;
 	if (data->map[data->p_y][data->p_x] != '1')
 	{
@@ -61,7 +60,6 @@ void	ft_move_up(t_game *data)
 
 void	ft_move_down(t_game *data)
 {
-	ft_get_player_pos(data);
 	data->p_y++;
 	if (data->map[data->p_y][data->p_x] != '1')
 	{
@@ -86,7 +84,6 @@ void	ft_move_down(t_game *data)
 
 void	ft_move_right(t_game *data)
 {
-	ft_get_player_pos(data);
 	data->p_x++;
 	if (data->map[data->p_y][data->p_x] != '1')
 	{
@@ -111,7 +108,6 @@ void	ft_move_right(t_game *data)
 
 void	ft_move_left(t_game *data)
 {
-	ft_get_player_pos(data);
 	data->p_x--;
 	if (data->map[data->p_y][data->p_x] != '1')
 	{

@@ -33,6 +33,7 @@ int	ft_exit(t_game *data)
 /* Configure move from keypress*/
 int	move_event(int key, t_game *data)
 {
+	ft_get_player_pos(data);
 	if (key == XK_Escape)
 		ft_exit(data);
 	else if (key == XK_w)
