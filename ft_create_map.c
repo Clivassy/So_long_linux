@@ -18,7 +18,7 @@ char	**ft_creat_map(char *map)
 	char	**final_map;
 
 	if (map[0] == '\0')
-		ft_input_error("error");
+		ft_input_error("error:\nCan't read the file");
 	final_map = ft_split(map, '\n');
 	free (map);
 	return (final_map);
@@ -40,7 +40,10 @@ char	**ft_read_map(t_game *data, char *file)
 	{
 		str = get_next_line(fd);
 		if (str == NULL || str[0] == '\n')
+		{
+			free(str);
 			break ;
+		}
 		map = ft_strjoin(map, str);
 		free(str);
 		data->width++;
