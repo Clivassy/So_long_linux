@@ -18,12 +18,6 @@ int	ft_check_lines_len(t_game *data)
 	int	i;
 
 	i = 0;
-	if (!data->map)
-	{
-		printf("no map");
-		ft_free(data->map);
-		exit(EXIT_FAILURE);
-	}
 	while (i < data->width)
 	{
 		if (ft_strlen(data->map[i]) != data->length)

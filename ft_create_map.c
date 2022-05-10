@@ -41,8 +41,11 @@ char	**ft_read_map(t_game *data, char *file)
 		str = get_next_line(fd);
 		if (str == NULL || str[0] == '\n')
 		{
+			free(map);
+			free(data);
 			free(str);
-			break ;
+			close(fd);
+			exit(EXIT_FAILURE);
 		}
 		map = ft_strjoin(map, str);
 		free(str);

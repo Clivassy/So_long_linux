@@ -43,6 +43,7 @@ void	ft_move_up(t_game *data)
 		{
 			if (data->collector == 0)
 			{
+				data->move++;
 				ft_putnbr(data->move);
 				ft_putstr_fd("\n", 1);
 				ft_exit(data);
@@ -71,6 +72,7 @@ void	ft_move_down(t_game *data)
 		{
 			if (data->collector == 0)
 			{
+				data->move++;
 				ft_putnbr(data->move);
 				ft_putstr_fd("\n", 1);
 				ft_exit(data);
@@ -99,6 +101,7 @@ void	ft_move_right(t_game *data)
 		{
 			if (data->collector == 0)
 			{
+				data->move++;
 				ft_putnbr(data->move);
 				ft_putstr_fd("\n", 1);
 				ft_exit(data);
@@ -127,6 +130,7 @@ void	ft_move_left(t_game *data)
 		{
 			if (data->collector == 0)
 			{
+				data->move++;
 				ft_putnbr(data->move);
 				ft_putstr_fd("\n", 1);
 				ft_exit(data);
