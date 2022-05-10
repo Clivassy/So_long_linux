@@ -33,6 +33,15 @@ void	ft_input_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+/* Error reading map */
+void	ft_error_empty_map(t_game *data, char *map)
+{
+	printf("error:\nWrong Map\n");
+	free(map);
+	free(data);
+	exit(EXIT_FAILURE);
+}
+
 /* Return fd error, free and quit properly */
 void	ft_fd_error(char *msg, char *map, t_game *data)
 {

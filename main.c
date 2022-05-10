@@ -16,11 +16,11 @@
 void	ft_check_input(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_input_error("Error: wrong input: ./so_long [file.ber]");
+		ft_input_error("Error:\nWrong input: ./so_long [file.ber]");
 	if ((ft_strlen(argv[1]) < 4) || (!ft_strrchr(argv[1], '.')))
-		ft_input_error("Error: wrong format: missing extension");
+		ft_input_error("Error:\nWrong file format");
 	if (ft_strcmp(ft_strrchr(argv[1], '.'), ".ber") != 0)
-		ft_input_error("Error: wrong format: file must be [.ber]");
+		ft_input_error("Error:\nWrong format: file must be [.ber]");
 }
 
 /* Initialize game structure */

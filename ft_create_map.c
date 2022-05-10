@@ -13,12 +13,15 @@
 #include "so_long.h"
 
 /* Create the map */
-char	**ft_creat_map(char *map)
+char	**ft_creat_map(char *map, t_game *data)
 {
 	char	**final_map;
 
 	if (map[0] == '\0')
-		ft_input_error("error:\nCan't read the file");
+	{
+		ft_error_empty_map(data, map);
+	}
+	//ft_input_error("error:\nCan't read the file");
 	final_map = ft_split(map, '\n');
 	free (map);
 	return (final_map);
@@ -40,18 +43,12 @@ char	**ft_read_map(t_game *data, char *file)
 	{
 		str = get_next_line(fd);
 		if (str == NULL || str[0] == '\n')
-		{
-			free(map);
-			free(data);
-			free(str);
-			close(fd);
-			exit(EXIT_FAILURE);
-		}
+			break;
 		map = ft_strjoin(map, str);
 		free(str);
 		data->width++;
 	}
 	free(str);
 	close(fd);
-	return (ft_creat_map(map));
+	return (ft_creat_map(map, data));
 }
