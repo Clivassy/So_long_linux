@@ -11,10 +11,13 @@ RM = rm -rf
 
 all: ${NAME} so_long.h
 ${NAME}: ${OBJS}
+	make -C ./minilibx-linux
+	mv ./minilibx-linux/libmlx.a ./libmlx.a
 	@${CC} ${CFLAGS} ${OBJS} -I ./ -g -L ./ -lX11 -lmlx -lXext -o so_long
 
 clean: 
 	@${RM} ${OBJS}
+	make -C ./minilibx-linux clean
 
 fclean: clean
 	@${RM} ${NAME}

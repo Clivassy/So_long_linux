@@ -14,7 +14,7 @@
 
 # define SO_LONG_H
 # include <stdlib.h>
-# include "mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <string.h>
 # include <strings.h>
 # include <unistd.h>
