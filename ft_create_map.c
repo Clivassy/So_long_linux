@@ -40,7 +40,7 @@ char	**ft_read_map(t_game *data, char *file)
 	{
 		str = get_next_line(fd);
 		if (str == NULL || str[0] == '\n')
-			break;
+			break ;
 		map = ft_strjoin(map, str);
 		free(str);
 		data->width++;
